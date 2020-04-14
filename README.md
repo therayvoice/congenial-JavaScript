@@ -1,0 +1,2 @@
+# congenial-JavaScript
+This repo has a .vimrc file and a few other files. The .vimrc file has code we can add to our .vimrc file. The other files need to be copied to ~/.vim direcory. When installed properly this will enable certain Normal-mode keybindings for Vim that makes writing JavaScript code easier. Useful Input and Critisim is welcome. If you contribute make sure to put your name and email in the contributers.md file.
