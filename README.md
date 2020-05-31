@@ -1,20 +1,20 @@
-   ____                             _       _       _                  ____            _       _   
-  / ___|___  _ __   __ _  ___ _ __ (_) __ _| |     | | __ ___   ____ _/ ___|  ___ _ __(_)_ __ | |_ 
- | |   / _ \| '_ \ / _` |/ _ \ '_ \| |/ _` | |  _  | |/ _` \ \ / / _` \___ \ / __| '__| | '_ \| __|
- | |__| (_) | | | | (_| |  __/ | | | | (_| | | | |_| | (_| |\ V / (_| |___) | (__| |  | | |_) | |_ 
-  \____\___/|_| |_|\__, |\___|_| |_|_|\__,_|_|  \___/ \__,_| \_/ \__,_|____/ \___|_|  |_| .__/ \__|
-                   |___/                                                                |_|        
-By
-  ____              __     __    _          
- |  _ \ __ _ _   _  \ \   / /__ (_) ___ ___ 
- | |_) / _` | | | |  \ \ / / _ \| |/ __/ _ \
- |  _ < (_| | |_| |   \ V / (_) | | (_|  __/
- |_| \_\__,_|\__, |    \_/ \___/|_|\___\___|
-             |___/                          
+   ____                             _       _       _                  ____            _       _     
+  / ___|___  _ __   __ _  ___ _ __ (_) __ _| |     | | __ ___   ____ _/ ___|  ___ _ __(_)_ __ | |_   
+ | |   / _ \| '_ \ / _` |/ _ \ '_ \| |/ _` | |  _  | |/ _` \ \ / / _` \___ \ / __| '__| | '_ \| __|  
+ | |__| (_) | | | | (_| |  __/ | | | | (_| | | | |_| | (_| |\ V / (_| |___) | (__| |  | | |_) | |_   
+  \____\___/|_| |_|\__, |\___|_| |_|_|\__,_|_|  \___/ \__,_| \_/ \__,_|____/ \___|_|  |_| .__/ \__|  
+                   |___/                                                                |_|          
+By  
+  ____              __     __    _            
+ |  _ \ __ _ _   _  \ \   / /__ (_) ___ ___   
+ | |_) / _` | | | |  \ \ / / _ \| |/ __/ _ \  
+ |  _ < (_| | |_| |   \ V / (_) | | (_|  __/  
+ |_| \_\__,_|\__, |    \_/ \___/|_|\___\___|  
+             |___/                            
 
 Congenial-JavaScript
 ====================
-	Congenial JavaScript is a Vim plugin for writing maximum JavaScript with minimum typing. The plugin has no dependencies. The inifial goal is to aid programmers and coders with Carpal Tunnel and disabilities.
+Congenial JavaScript is a Vim plugin for writing maximum JavaScript with minimum typing. The plugin has no dependencies. The inifial goal is to aid programmers and coders with Carpal Tunnel and disabilities.
 
 Guidelines to Install
 ---
@@ -26,7 +26,7 @@ Guidelines to Install
 
 Congenial Coding Practices
 --------------------------
-	The philosophy behind Congenial Coding Practices is to write the most amount of code with the least amount of typing.
+The philosophy behind Congenial Coding Practices is to write the most amount of code with the least amount of typing.
  The Incantation is prefixed with `CTRL+i`.
  The Incantations are written following a very specific scheme:
  1. Every Incantation is two characters only.
