@@ -25,6 +25,7 @@ Guidelines to Install
 3. In the cloned directory there is a directory named `.congenial` (it may be hidden), put this directory in `~/.vim/after/ftplugin/javascript/`. This too can be a symbolic link.
 4. Now use `vim someFile.js` to open a JavaScript file, here use `:scriptnames` to see scripts activated for this buffer, you should see this script.
 5. Use `CTRL+i` then `fn` to see the magic.
+6. Make sure you have `filetype plugin indent on` in `.vimrc`.
 
 Congenial Coding Practices
 --------------------------
