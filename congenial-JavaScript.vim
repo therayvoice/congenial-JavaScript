@@ -34,3 +34,9 @@ inoremap <c-i>si <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.j
 inoremap <c-i>co <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jscon.js<CR>3wla
 " more comming
 
+nnoremap ,fn <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfunction.js<CR>wi
+nnoremap ,fl <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfuncon.js<CR>wi
+nnoremap ,fo <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfor.js<CR>8wa
+nnoremap ,si <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsintv.js<CR>2jwi
+nnoremap ,co <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jscon.js<CR>3wla
+" more comming
