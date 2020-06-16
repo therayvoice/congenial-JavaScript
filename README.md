@@ -16,58 +16,35 @@ By
 
 Congenial-JavaScript
 ====================
-Congenial JavaScript is a Vim plugin for writing maximum JavaScript with minimum typing. The plugin has no dependencies. The inifial goal is to aid programmers and coders with Carpal Tunnel and disabilities.
+Congenial JavaScript is a Vim plugin for writing maximum JavaScript with minimum typing. The plugin has no dependencies. The initial goal is to aid programmers and coders with Carpal Tunnel and other disabilities.
+Congenial-JavaScript can be thought of as Emmett-vim for JavaScript.
 
 Guidelines to Install
 ---
 1. Use `git clone https://github.com/Ray6464/congenial-JavaScript`.
-2. In the cloned directory there is a file named `congenial-JavaScript.vim`, put this file in your `~/.vim/after/ftplugin/javascript/` directory. You also use a symbolic linke with `ln -s url/to/congenial-JavaScript.vim ~/.vim/after/ftplugin/javascript/congenial-JavaScript.vim`.
-3. In the cloned directory there is a directory named `.congenial` (it may be hidden), put this directory in `~/.vim/after/ftplugin/javascript/`. This too can be a symbolic link.
-4. Now use `vim someFile.js` to open a JavaScript file, here use `:scriptnames` to see scripts activated for this buffer, you should see this script.
-5. Use `CTRL+i` then `fn` to see the magic.
-6. Make sure you have `filetype plugin indent on` in `.vimrc`.
-
-Congenial Coding Practices
---------------------------
-The philosophy behind Congenial Coding Practices is to write the most amount of code with the least amount of typing.
- The Incantation is prefixed with `CTRL+i`.
- The Incantations are written following a very specific scheme:
- 1. Every Incantation is two characters only.
- 2. To reduce the strain on your hands the left had types a character and the right types another. Of course, we can type with any hand we want.
- 3. The first letter of the first word of a code-block's name becomes the first character of an Incantation.
- 4. The second character of the Incantation is anything we can type with the opposite-hand.
- For example, to write a `function` use `<CTRL+i>fn`, here `CTRL` is pressed with the left hand, `i` is pressed with the right, then `f` with left, and `n` with the right.
- For example to write a `function + console.log()` use `<CTRL+i>fl`, here `CTRL` is pressed with the left hand, `i` is pressed with the right, then `f` with left, and `l` with the right.
- This system is not perfect, but it's the one I have used to cope with my carpel tunnel for a long time. If you have suggestions for an alternative system raise an issue on GitHub.
- Lastly we have a expension feature for abbreviations, if you type con and press space it will turn into console.log(); for func ==> function , etc.
-
+2. In a terminal goto `~/.vim/after/ftplugin/javascript/`. Make these directories if they are absent.
+3. Make a symbolic-link to the cloned directory with `ln -s ~/path/to/cloned/directory congenial-JavaScript`.
+4. Now open a JavaScript file in Vim, like `vim something.js` and try out the magic.
 
 Congenial JavaScript has the following features
 -----------------------------------------------
-1. Common abbreviations like Writing `con` and pressing space turns `con` into `console.log(`.
-2. Similar short-hand for both Normal-mode and Insert-mode.
-3. Normal-mode shorthand is triggered with a `,`.
-4. Insert-mode shorthand is triggred with an `CTRL+i`.
-5. Useful Input/Critisim is always welcome.
-6. If you contribute make sure to put your name and email in the contributers.md file. Check out other COngenial libraries (under development).
-
-### Abbreiviations
-1. `con` ==> `console.log(`.
-2. `func` ==> `function`.
+1. Similar short-hand for both Normal-mode and Insert-mode.
+2. Normal-mode shorthand is triggered with a `,`.
+3. Insert-mode shorthand is triggred with an `CTRL+i`.
+4. Upon trigger a command Vim will prompt you for a few things, when answered properls 
 
 ## Following Commands are present for JavaScript in Normal-mode
-1. `,fn` for **F**unctio**n**s.
-2. `,fl` for **F**unctions with a console.**l**og.
-3. `,fo` for **Fo**r loop.
-4. `,si` for **S**et**I**nterval.
-5. `,co` for **co**nsole.log.
+1. `,var` to generate variables with scopes.
+2. `,label` to generate labels.
+3. `,loop` to generate loops that can loop over range, indices, members, etc.
+4. `,array` for array.
+5. `,split` and `,map` for array methods.
+6. more comming soon.
 
-## Following Commands are present for JavaScript in Insert-mode
-1. `Ctrl+i` + `fn` for **F**unctio**n**s.
-2. `Ctrl+i` + `fl` for **F**unctions with a console.**l**og.
-3. `Ctrl+i` + `fo` for **Fo**r loop.
-4. `Ctrl+i` + `si` for **S**et**I**nterval.
-5. `Ctrl+i` + `co` for **co**nsole.log.
+Contribution
+------------
+1. Useful Input/Critisim is always welcome.
+2. If you contribute make sure to put your name and email in the contributers.md file. Check out other Congenial libraries (under development).
 
 License
 =======
