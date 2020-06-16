@@ -24,19 +24,25 @@
 " This system is not perfect, but it's the one I have used to cope with my carpel tunnel for a long time. If you have suggestions for an alternative system raise an issue on GitHub.
 " Lastly we have a expension feature for abbreviations, if you type con and press space it will turn into console.log(); for func ==> function , etc.
 
-iabbrev con console.log(
-iabbrev func function 
+" importing modules
+so ~/.vim/after/ftplugin/javascript/congenial-JavaScript/modules/sourceCodeGenerator.vim
+so ~/.vim/after/ftplugin/javascript/congenial-JavaScript/modules/tests.vim
 
-inoremap <c-i>fn <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfunction.js<CR>wi
-inoremap <c-i>fl <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfuncon.js<CR>wi
-inoremap <c-i>fo <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfor.js<CR>8wa
-inoremap <c-i>si <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsintv.js<CR>2jwi
-inoremap <c-i>co <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jscon.js<CR>3wla
-" more comming
+" The following stuff is used to generate code
+nnoremap ,test :call TestStart()<cr>
+nnoremap ,outline <esc><c-w>n:-1read /home/ray/.vim/after/ftplugin/javascript/docs/outline.txt<cr><cr>
+nnoremap ,var :call GenerateVariableWithScope()<cr>
+nnoremap ,label :call GenerateLabel()<cr>
+nnoremap ,loop :call ForLoop()<cr>
+nnoremap ,array :call GenerateArray()<cr>
+nnoremap ,log :call GenerateLog()<cr>
+nnoremap ,timer :call GenerateTimer()<cr>
+nnoremap ,split :call SplitArray()<cr>
+nnoremap ,map :call MapArray()<cr>
 
-nnoremap ,fn <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfunction.js<CR>wi
-nnoremap ,fl <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfuncon.js<CR>wi
-nnoremap ,fo <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsfor.js<CR>8wa
-nnoremap ,si <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jsintv.js<CR>2jwi
-nnoremap ,co <esc>:-1read $HOME/.vim/after/ftplugin/javascript/.congenial/.jscon.js<CR>3wla
-" more comming
+" fix the folllowing features
+" nnoremap ,label //LabelName: {<cr>  //add stuff here<cr>}<esc>2<up>v7<right> 
+" nnoremap ,var let varName = "value";<esc>9<left>v6<right>
+" nnoremap ,array let arrName = [1,2,3];<esc>17<left>v6<right>
+
+
