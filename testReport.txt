@@ -1,0 +1,89 @@
+
+----------------------
+Sat 20 Jun 2020 03:22:05 PM PKT
+----------------------
+--------*Output: Hello World*--------
+Report: The Function [AddToDoc] is working.     (PASS)
+--------*Output: var Health = 100;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: let alive = true;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: const class = 'hero';*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: QATests:{}*--------
+Report: The Function [GenerateLabel] is working.     (PASS)
+--------*Output: for (let i=0; i<10; i++){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let m of myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let i in myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+
+----------------------
+Sat 20 Jun 2020 03:22:37 PM PKT
+----------------------
+--------*Output: Hello World*--------
+Report: The Function [AddToDoc] is working.     (PASS)
+--------*Output: var Health = 100;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: let alive = true;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: const class = 'hero';*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: QATests:{}*--------
+Report: The Function [GenerateLabel] is working.     (PASS)
+--------*Output: for (let i=0; i<10; i++){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let m of myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let i in myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+Number of Tests performed: 9
+Number of Tests Passed: 8
+Number of Tests Failed: 0
+
+----------------------
+Sat 20 Jun 2020 03:27:08 PM PKT
+----------------------
+--------*Output: Hello World*--------
+Report: The Function [AddToDoc] is working.     (PASS)
+--------*Output: var Health = 100;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: let alive = true;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: const class = 'hero';*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: QATests:{}*--------
+Report: The Function [GenerateLabel] is working.     (PASS)
+--------*Output: for (let i=0; i<10; i++){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let m of myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let i in myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+-1
+Number of Tests Passed: 8
+Number of Tests Failed: 0
+
+----------------------
+Sat 20 Jun 2020 03:28:18 PM PKT
+----------------------
+--------*Output: Hello World*--------
+Report: The Function [AddToDoc] is working.     (PASS)
+--------*Output: var Health = 100;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: let alive = true;*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: const class = 'hero';*--------
+Report: The Function [GenerateVariableWithScope] is working.     (PASS)
+--------*Output: QATests:{}*--------
+Report: The Function [GenerateLabel] is working.     (PASS)
+--------*Output: for (let i=0; i<10; i++){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let m of myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+--------*Output: for (let i in myLoop){}*--------
+Report: The Function [GenerateForLoop] is working.     (PASS)
+Number of Tests performed: 8
+Number of Tests Passed: 8
+Number of Tests Failed: 0
