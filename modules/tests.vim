@@ -59,11 +59,32 @@ function! GenerateReport(testName, expectedOutput) abort
   let g:lineNumber = g:lineNumber + 1
 endfunction
 
+function! GenerateMultiLineReport(testName, lineCount, expectedOutputs) abort
+  call WriteToFile('--------*Output: '.getline(g:lineNumber)."*--------")
+  let goodLines = 0
+
+  for expectedOutput in expectedOutputs
+    if getline(g:lineNumber) == expectedOutput
+      let g:lineNumber = g:lineNumber + 1
+      let goodLines = goodLines + 1
+    endif
+  endfor
+
+  if goodLines == a:lineCount
+    call Report(a:testName)
+  else
+    call Error(a:testName)
+  endif
+endfunction
+
 function! GenerateReportCount() abort
   let numberOfTests = g:lineNumber - 1
   call WriteToFile("Number of Tests performed: ".numberOfTests)
   call WriteToFile("Number of Tests Passed: ".g:numberOfTestsPassed)
   call WriteToFile("Number of Tests Failed: ".g:numberOfTestsFailed)
+  let g:lineNumber = 0
+  let g:numberOfTestsPassed = 0
+  let g:numberOfTestsFailed = 0
 endfunction
 
 function! TestAddToDoc() abort
@@ -110,6 +131,52 @@ function! TestGenerateForLoop() abort
   call GenerateReport(testName, expectedOutput3)
 endfunction
 
+function! TestGenerateArray() abort
+  let testName = "GenerateArray"
+  let expectedOutput = "let myArray = [1,2,3];      "
+  call GenerateArray("myArray", 3, 1, 2, 3)
+  call GenerateReport(testName, expectedOutput)
+endfunction
+
+function! TestSplitArray() abort
+  let testName = "SplitArray"
+  let expectedOutput = 'myArray.split(",");'
+  call SplitArray("myArray", ",")
+  call GenerateReport(testName, expectedOutput)
+endfunction
+
+function! TestMapArray() abort
+  let testName = "MapArray"
+  let expectedOutput = 'myArray.map(element => console.log(element));'
+  call MapArray("myArray", "console.log(element)")
+  call GenerateReport(testName, expectedOutput)
+endfunction
+
+function! TestGenerateTimer() abort
+  let testName = "GenerateTimer"
+  let expectedOutput = "const myTimer = setInterval(function(){/*code-here*/},1000);"
+  call GenerateTimer("myTimer", 1000)
+  call GenerateReport(testName, expectedOutput)
+endfunction
+
+function! TestGenerateLog() abort
+  let testName = "GenerateLog"
+  let expectedOutput = 'console.log("Hello World");'
+  call GenerateLog('"Hello World"')
+  call GenerateReport(testName, expectedOutput)
+endfunction
+
+function! TestGenerateLoopOverArray() about
+  let testName = "GenerateLoopOverArray"
+  let line1 = 'myArray.forEach((member, index, thisArray)=>{'
+  let line2 = '  console.log (index, member, thisArray);'
+  let line3 = '});'
+  let expectedOutputs = [line1, line2, line3]
+  let linesInCode = 3
+  call GenerateLoopOverArray("myArray")
+  call GenerateMultiLineReportReport(testName, 3, expectedOutputs)
+endfunction
+
 function! TestStart()
   call WriteTestHeaderToFile()
 
@@ -120,6 +187,19 @@ function! TestStart()
   call TestGenerateLabel()
   call NextLine()
   call TestGenerateForLoop()
+  call NextLine()
+  call TestGenerateArray()
+  call NextLine()
+  call TestSplitArray()
+  call NextLine()
+  call TestMapArray()
+  call NextLine()
+  call TestGenerateTimer()
+  call NextLine()
+  call TestGenerateLog()
+  call NextLine()
+  call TestGenerateLoopOverArray()
+" add more tests here
 
   call GenerateReportCount()
   call ReadTestReport()

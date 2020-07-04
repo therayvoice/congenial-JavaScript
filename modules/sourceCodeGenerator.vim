@@ -11,6 +11,10 @@ function! IsTest(args) abort
   endif
 endfunction
 
+function! NewLine() abort
+  execute 'normal o'
+endfunction
+
 " check suggestion spelling, and make suggestions with input method instead of
 " functions
 function! Suggest(msg) abort
@@ -106,53 +110,122 @@ function! GenerateForLoop(...) abort
   endif
 endfunction
 
-function! GenerateArray() abort
-  let arrayName = input('Name of Array: ')
-  let numberOfMembersInArray = input('Number of Members in Array: ')
+function! GenerateArray(...) abort
+  if a:0 > 0
+    let arrayName = a:1
+    let numberOfMembersInArray = a:2
+  else
+    let arrayName = input('Name of Array: ')
+    let numberOfMembersInArray = input('Number of Members in Array: ')
+  endif
   call AddToDoc('let '.arrayName.' = [ ')
 
   let i = 0
   while i < numberOfMembersInArray
-    let valueOfNthMember = input('Value of '.i.'th member: ')
+    
+    if a:0 > 0
+      let valueOfNthMember = a:3 + i
+    else
+      let valueOfNthMember = input('Value of '.i.'th member: ')
+    endif
+
     call AddToDoc(valueOfNthMember." ")
+
     if i < numberOfMembersInArray-1
       call AddToDoc(', ')
     endif
+
     let i = i+1
   endwhile
 
     call AddToDoc('];')
 endfunction
 
-function! GenerateLog() abort
-  let valueToLog = input('Value to log: ')
+function! GenerateLog(...) abort
+  if a:0 > 0
+    let valueToLog = a:1
+  else
+    let valueToLog = input('Value to log: ')
+  endif
   call AddToDoc('console.log('.valueToLog.');')
 endfunction
 
-function! GenerateTimer() abort
-  let intervalName = input('IntervalName: ')
-  let intervalLength = input('interval length in ms: ')
+function! GenerateTimer(...) abort
+  if a:0 > 0
+    let intervalName = a:1
+    let intervalLength = a:2
+  else
+    let intervalName = input('IntervalName: ')
+    let intervalLength = input('interval length in ms: ')
+  endif
   call AddToDoc('const '.intervalName.' = setInterval(function(){/*code-here*/},'.intervalLength.');')
 endfunction
 
-function! SplitArray() abort
-  call Suggest('Name an array you have already declared')
-  let arrayName = input('Array Name: ')
-  let splitByCharacter = input('Split by character: ')
-  call AddToDoc(arrayName.'.split("'.splitByCharacter.'")')
+function! SplitArray(...) abort
+"  call Suggest('Name an array you have already declared')
+  if a:0 > 0
+    let arrayName = a:1
+    let splitByCharacter = a:2
+  else
+    let arrayName = input('Array Name: ')
+    let splitByCharacter = input('Split by character: ')
+  endif
+  call AddToDoc(arrayName.'.split("'.splitByCharacter.'");')
 endfunction
 
-function! MapArray() abort
-  call Suggest('Name an array you have already declared')
-  call Suggest('console.log("This is an " + element)')
-  let arrayName = input('Array Name: ')
-  let expressionToExecute = input('Expression to execute per iteration: ')
+function! MapArray(...) abort
+"  call Suggest('Name an array you have already declared')
+"  call Suggest('console.log("This is an " + element)')
+  if a:0 > 0
+    let arrayName = a:1
+    let expressionToExecute = a:2
+  else
+    let arrayName = input('Array Name: ')
+    let expressionToExecute = input('Expression to execute per iteration: ')
+  endif
   call AddToDoc(arrayName.'.map(element => '.expressionToExecute.');')
 endfunction
 
-" add more from simply es6
-
+function! GenerateLoopOverArray(...) abort
+  if a:0 > 0
+    let arrayName = a:1
+  else
+    let arrayName = input('Array Name: ')
+  endif
+  call AddToDoc(arrayName.'.forEach((member, index, thisArray)=>{')
+  call NewLine()
+  call AddToDoc('  console.log (index, member, thisArray);')
+  call NewLine()
+  call AddToDoc('});')
+endfunction
 
 " End of routine list
 " " Break suggestion into echo on preceding line
 " " Make all featurs monolithic
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"
+"

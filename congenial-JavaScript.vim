@@ -29,4 +29,4 @@ nnoremap ,log :call GenerateLog()<cr>
 nnoremap ,timer :call GenerateTimer()<cr>
 nnoremap ,split :call SplitArray()<cr>
 nnoremap ,map :call MapArray()<cr>
-
+nnoremap ,loarray :call GenerateLoopOverArray()<cr>
