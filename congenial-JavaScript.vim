@@ -20,7 +20,7 @@ so ~/.vim/after/ftplugin/javascript/congenial-JavaScript/modules/tests.vim
 
 " The following stuff is used to generate code
 nnoremap ,test :call TestStart()<cr>
-nnoremap ,outline <esc><c-w>n:-1read /home/ray/.vim/after/ftplugin/javascript/docs/outline.txt<cr><cr>
+nnoremap ,outline <esc><c-w>n:-1read /home/ray/.vim/after/ftplugin/javascript/congenial-JavaScript/docs/outline.txt<cr><cr>
 nnoremap ,var :call GenerateVariableWithScope()<cr>
 nnoremap ,label :call GenerateLabel()<cr>
 nnoremap ,loop :call GenerateForLoop()<cr>
@@ -30,3 +30,19 @@ nnoremap ,timer :call GenerateTimer()<cr>
 nnoremap ,split :call SplitArray()<cr>
 nnoremap ,map :call MapArray()<cr>
 nnoremap ,loarray :call GenerateLoopOverArray()<cr>
+" needs code for Array.filter()
+
+" The following stuff is used to generate code
+inoremap <c-y>test <esc>:call TestStart()<cr>
+inoremap <c-y>outline <esc><c-w>n:-1read /home/ray/.vim/after/ftplugin/javascript/congenial-JavaScript/docs/outline.txt<cr><cr>
+inoremap <c-y>var <esc>:call GenerateVariableWithScope()<cr>
+inoremap <c-y>label <esc>:call GenerateLabel()<cr>
+inoremap <c-y>loop <esc>:call GenerateForLoop()<cr>
+inoremap <c-y>array <esc>:call GenerateArray()<cr>
+inoremap <c-y>log <esc>:call GenerateLog()<cr>
+inoremap <c-y>timer <esc>:call GenerateTimer()<cr>
+inoremap <c-y>split <esc>:call SplitArray()<cr>
+inoremap <c-y>map <esc>:call MapArray()<cr>
+inoremap <c-y>loarray <esc>:call GenerateLoopOverArray()<cr>
+" needs code for Array.filter()
+

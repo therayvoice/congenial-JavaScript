@@ -1,9 +1,7 @@
 "----------------------
 let numberOfTestsPassed = 0
-"----------------------
-
-"----------------------
 let numberOfTestsFailed = 0
+let headOverLineNumber = 1
 "----------------------
 
 function! Report(functionName) abort
@@ -35,42 +33,37 @@ function! ReadTestReport() abort
   execute "new ./testReport.txt" 
 endfunction
 
-"function! ClearFile() abort
-"  execute 'normal ggdG'
-"endfunction
-
 function! NextLine() abort
   execute 'normal o'
 endfunction
 
-" each test is ran on a diffrent lineNumber
-"----------------------
-let lineNumber = 1
-"----------------------
+function! MoveHeadToNextLine() abort
+  let g:headOverLineNumber = g:headOverLineNumber + 1
+endfunction
 
 function! GenerateReport(testName, expectedOutput) abort
-  call WriteToFile('--------*Output: '.getline(g:lineNumber)."*--------")
-  if getline(g:lineNumber) == a:expectedOutput
+  call WriteToFile('--------*Output: '.getline(g:headOverLineNumber)."*--------")
+  if getline(g:headOverLineNumber) == a:expectedOutput
     call Report(a:testName)
   else
     call Error(a:testName)
   endif
-  " lines are incremented here so the test-head moves from line #1 -> #2, #2 -> #3, ...
-  let g:lineNumber = g:lineNumber + 1
+  call MoveHeadToNextLine()
 endfunction
 
-function! GenerateMultiLineReport(testName, lineCount, expectedOutputs) abort
-  call WriteToFile('--------*Output: '.getline(g:lineNumber)."*--------")
+function! GenerateMultiLineReport(testName, expectedOutputs) abort
+  let linesInExpectedOutput = len(a:expectedOutputs)
+  call WriteToFile('--------*Output: '.getline(g:headOverLineNumber)."...".(linesInExpectedOutput-1)." more lines*--------")
   let goodLines = 0
 
-  for expectedOutput in expectedOutputs
-    if getline(g:lineNumber) == expectedOutput
-      let g:lineNumber = g:lineNumber + 1
+  for expectedOutput in a:expectedOutputs
+    if getline(g:headOverLineNumber) == expectedOutput
       let goodLines = goodLines + 1
     endif
+    call MoveHeadToNextLine()
   endfor
 
-  if goodLines == a:lineCount
+  if goodLines == linesInExpectedOutput
     call Report(a:testName)
   else
     call Error(a:testName)
@@ -78,11 +71,11 @@ function! GenerateMultiLineReport(testName, lineCount, expectedOutputs) abort
 endfunction
 
 function! GenerateReportCount() abort
-  let numberOfTests = g:lineNumber - 1
+  let numberOfTests = g:numberOfTestsPassed + g:numberOfTestsFailed
   call WriteToFile("Number of Tests performed: ".numberOfTests)
   call WriteToFile("Number of Tests Passed: ".g:numberOfTestsPassed)
   call WriteToFile("Number of Tests Failed: ".g:numberOfTestsFailed)
-  let g:lineNumber = 0
+  let g:headOverLineNumber = 0
   let g:numberOfTestsPassed = 0
   let g:numberOfTestsFailed = 0
 endfunction
@@ -166,15 +159,14 @@ function! TestGenerateLog() abort
   call GenerateReport(testName, expectedOutput)
 endfunction
 
-function! TestGenerateLoopOverArray() about
+function! TestGenerateLoopOverArray() abort
   let testName = "GenerateLoopOverArray"
   let line1 = 'myArray.forEach((member, index, thisArray)=>{'
   let line2 = '  console.log (index, member, thisArray);'
   let line3 = '});'
   let expectedOutputs = [line1, line2, line3]
-  let linesInCode = 3
   call GenerateLoopOverArray("myArray")
-  call GenerateMultiLineReportReport(testName, 3, expectedOutputs)
+  call GenerateMultiLineReport(testName, expectedOutputs)
 endfunction
 
 function! TestStart()
@@ -203,5 +195,4 @@ function! TestStart()
 
   call GenerateReportCount()
   call ReadTestReport()
-"  call ClearFile()
 endfunction

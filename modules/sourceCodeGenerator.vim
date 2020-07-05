@@ -1,7 +1,8 @@
-" Routines required by text rendering functions
+" --- Function to render text on to file ---
 function! AddToDoc(dataToAdd) abort
   execute 'normal i'.a:dataToAdd
 endfunction
+" ------------------------------------------
 
 function! IsTest(args) abort
   if a:args > 0
@@ -15,17 +16,11 @@ function! NewLine() abort
   execute 'normal o'
 endfunction
 
-" check suggestion spelling, and make suggestions with input method instead of
-" functions
-function! Suggest(msg) abort
-  echo 'Suggestion: '.a:msg
-endfunction
-
 function! GenerateVariableWithScope(...) abort
   if IsTest(a:0)
     let scopeSelection = a:1 " 1 | 2 | 3
-    let varName = a:2 " health | lvl | money | etc
-    let varValue = a:3 " 1 | 2 | true | 'hell world' | etc
+    let varName = a:2
+    let varValue = a:3
   else
     let scopeSelection = input('var/let/const Pick 1/2/3: ')
     let varName = input('Name of Variable: ')
@@ -37,7 +32,6 @@ function! GenerateVariableWithScope(...) abort
 endfunction
 
 function! GenerateLabel(...) abort
-"  if a:0 > 0
   if IsTest(a:0)
     let labelName = a:1
   else
@@ -63,7 +57,6 @@ function! LoopOverMembers(...) abort
   if IsTest(a:0)
     call AddToDoc('for (let m of '.a:1.'){}')
   else
-    call Suggest('Give the name of an already declared array, for example: myList | myArray | myArr')
     let arrayToIterateOver = input('Array to Iterate Over: ')
     call AddToDoc('for (let m of '.arrayToIterateOver.'){}')
   endif
@@ -73,7 +66,6 @@ function! LoopOverIndices(...) abort
   if IsTest(a:0)
     call AddToDoc('for (let i in '.a:1.'){}')
   else
-    call Suggest('Give the name of an already declared array, for example: myList | myArray | myArr')
     let arrayToIterateOver = input('Array to Iterate Over: ')
     call AddToDoc('for (let i in '.arrayToIterateOver.'){}')
   endif
@@ -111,7 +103,7 @@ function! GenerateForLoop(...) abort
 endfunction
 
 function! GenerateArray(...) abort
-  if a:0 > 0
+  if IsTest(a:0)
     let arrayName = a:1
     let numberOfMembersInArray = a:2
   else
@@ -123,7 +115,7 @@ function! GenerateArray(...) abort
   let i = 0
   while i < numberOfMembersInArray
     
-    if a:0 > 0
+    if IsTest(a:0)
       let valueOfNthMember = a:3 + i
     else
       let valueOfNthMember = input('Value of '.i.'th member: ')
@@ -142,7 +134,7 @@ function! GenerateArray(...) abort
 endfunction
 
 function! GenerateLog(...) abort
-  if a:0 > 0
+  if IsTest(a:0)
     let valueToLog = a:1
   else
     let valueToLog = input('Value to log: ')
@@ -151,7 +143,7 @@ function! GenerateLog(...) abort
 endfunction
 
 function! GenerateTimer(...) abort
-  if a:0 > 0
+  if IsTest(a:0)
     let intervalName = a:1
     let intervalLength = a:2
   else
@@ -162,8 +154,7 @@ function! GenerateTimer(...) abort
 endfunction
 
 function! SplitArray(...) abort
-"  call Suggest('Name an array you have already declared')
-  if a:0 > 0
+  if IsTest(a:0)
     let arrayName = a:1
     let splitByCharacter = a:2
   else
@@ -174,9 +165,7 @@ function! SplitArray(...) abort
 endfunction
 
 function! MapArray(...) abort
-"  call Suggest('Name an array you have already declared')
-"  call Suggest('console.log("This is an " + element)')
-  if a:0 > 0
+  if IsTest(a:0)
     let arrayName = a:1
     let expressionToExecute = a:2
   else
@@ -187,7 +176,7 @@ function! MapArray(...) abort
 endfunction
 
 function! GenerateLoopOverArray(...) abort
-  if a:0 > 0
+  if IsTest(a:0)
     let arrayName = a:1
   else
     let arrayName = input('Array Name: ')
@@ -199,33 +188,3 @@ function! GenerateLoopOverArray(...) abort
   call AddToDoc('});')
 endfunction
 
-" End of routine list
-" " Break suggestion into echo on preceding line
-" " Make all featurs monolithic
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
-"
