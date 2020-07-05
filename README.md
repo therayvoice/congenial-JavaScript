@@ -21,10 +21,11 @@ Congenial-JavaScript can be thought of as Emmett-vim for JavaScript, it generate
 
 Guidelines to Install
 ---
-1. Use `cd ~ && git clone https://github.com/Ray6464/congenial-JavaScript`.
-2. In a terminal goto `~/.vim/after/ftplugin/javascript/`, make these directories if they are absent!
-3. Make a symbolic-link to the cloned directory with `ln -s ~/path/to/cloned/directory congenial-JavaScript`.
-4. Now open a JavaScript file in Vim, like `vim something.js` and try out the magic.
+1. Use `cd ~ && git clone https://github.com/Ray6464/congenial-JavaScript`. 
+2. In a terminal goto `~/.vim/after/ftplugin/javascript/`, make these directories if they are absent! 
+3. Make a symbolic-link to the cloned directory with `ln -s ~/congenial-JavaScript`.
+4. Execute `cp ~/.vim/after/ftplugin/javascript/congenial-JavaScript/modules/plugins.vim ~/.vim/after/ftplugin/javascript/plugins.vim`  
+5. Now open a JavaScript file in Vim, like vim something.js and try out the magic.
 
 Congenial JavaScript has the following features
 -----------------------------------------------
