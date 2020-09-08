@@ -1,6 +1,12 @@
 " --- Function to render text on to file ---
-function! AddToDoc(dataToAdd) abort
+function! AddToDoc(dataToAdd, ...) abort
   execute 'normal i'.a:dataToAdd
+  " a:1 aka first argument is used to add new line at the end
+  if a:0 > 0
+    if a:1 == "newLine"
+      execute 'normal o'
+    endif
+  endif
 endfunction
 " ------------------------------------------
 
@@ -12,8 +18,8 @@ function! IsTest(args) abort
   endif
 endfunction
 
-function! NewLine() abort
-  execute 'normal o'
+function! NewLine(...) abort
+    execute 'normal o'
 endfunction
 
 function! GenerateVariableWithScope(...) abort
@@ -188,3 +194,160 @@ function! GenerateLoopOverArray(...) abort
   call AddToDoc('});')
 endfunction
 
+function! ObjectWriter(objectChoices, index, preCode, postCode) abort
+  let objectChoice = a:objectChoices[a:index]
+  call AddToDoc(a:preCode.objectChoice.a:postCode)
+endfunction
+
+function! GenerateBuiltInVariables() abort
+  let objectChoices = ['console', 'global', 'process', 'window', 'document']
+  let objectChoiceIndex = input('console/global/process/window/document'.' Pick 1/2/3/etc: ')
+  call ObjectWriter(objectChoices, objectChoiceIndex-1, '', '')
+endfunction
+ 
+function! GenerateProcessVariables() abort
+  let objectChoices = ['argv', 'env', 'emitWarning()', 'pid', 'platform', 'arch']
+  let objectChoiceIndex = input('argv/env/emitWarning/pid/platform/arch'.' Pick 1/2/3/etc: ')
+  call ObjectWriter(objectChoices, objectChoiceIndex-1, 'process.', '')
+endfunction
+
+function! GenerateEventVariables() abort
+  let objectChoices = ['exit', 'beforeExit', 'abort']
+  let objectChoiceIndex = input('Events exit/beforeExit/abort Pick 1/2/3/etc: ')
+  let objectChoice = objectChoices[objectChoiceIndex-1]
+  call AddToDoc('process.on("'.objectChoice.'",function() {});')
+endfunction
+
+function! GenerateEventEmitter() abort
+  call AddToDoc("const { EventEmitter } = require('events')")
+  call NewLine()
+  call AddToDoc('const eventEmitter = new EventEmitter();')
+  call NewLine()
+  call AddToDoc("eventEmitter.on('launch', () => {")
+  call NewLine()
+  call AddToDoc("console.log('Server launched')")
+  call NewLine()
+  call AddToDoc("})")
+  call NewLine()
+  call AddToDoc("eventEmitter.emit('launch')")
+endfunction
+
+function! GenerateHTTPServerCode() abort
+  let serverPort = input("Which port to use (8080, 3000, etc.): ")
+    
+  call AddToDoc("var http = require('http');")
+  call NewLine()
+  call NewLine()
+  call AddToDoc("http.createServer(function (req, res) {", "newLine")
+  call AddToDoc("  res.writeHead(200, {'Content-Type': 'text/html'});", "newLine")
+  call AddToDoc("  res.write('server at ".serverPort." is up');", "newLine")
+  call AddToDoc("  return res.end();", "newLine")
+  call AddToDoc("}).listen(".serverPort.");", "newLine")
+endfunction
+
+function! GenerateFSModuleCode() abort
+" needs more methods
+  let fsMethods = input('(1) Read File, (2) Write File 1/2: ')
+  let blocking = input('blocking (sync) or non-blocking (async) 1/2: ')
+  let fileName = input('fileName: ')
+
+  if fsMethods == '2'
+    let textOutput = input('What text do you want written to that file: ')
+    let dataVarName = input('Name of the variable that will store data: ')
+  endif
+
+  if fileName == ''
+    let fileName = './database.json'
+  endif
+
+  if blocking == '1'
+    if fsMethods == '1'
+      call AddToDoc("const { readFileSync } = require('fs');", "newLine")
+      call AddToDoc("const txt = readFileSync('".fileName."', 'utf8');", "newLine")
+      call AddToDoc("console.log(txt);", "newLine")
+    elseif fsMethods == '2'
+      call AddToDoc("const { writeFileSync } = require('fs');", "newLine") 
+      call AddToDoc("const ".dataVarName." = new Uint8Array(Buffer.from('".textOutput."'));", "newLine") 
+      call AddToDoc("writeFileSync('".fileName."', ".dataVarName.");", "newLine") 
+    endif
+  elseif blocking == '2'
+    if fsMethods == '1'
+      call AddToDoc("const { readFile } = require('fs');", "newLine")
+      call AddToDoc("readFile('".fileName."', 'utf8', (err, txt)=>{", "newLine")
+      call AddToDoc("  console.log(txt);", "newLine")
+      call AddToDoc("});", "newLine")
+    elseif fsMethods == '2'
+      call AddToDoc("const { writeFile } = require('fs');", "newLine") 
+      call AddToDoc("const ".dataVarName." = new Uint8Array(Buffer.from('".textOutput."'));", "newLine") 
+      call AddToDoc("writeFile('".fileName."', ".dataVarName.", (err) => {", "newLine") 
+      call AddToDoc("  if (err) throw err;", "newLine")
+      call AddToDoc("  console.log('The file has been saved!');", "newLine") 
+      call AddToDoc("});", "newLine")
+    endif
+  endif
+endfunction
+
+function! GenerateRequire() abort
+  let moduleName = input("Module Name: ")
+  let moduleImportedAs = input("Import data as: ")
+
+  if moduleName == ''
+  " for defaultModule.js located in the project's root
+    let moduleName = './defaultModule'
+  endif
+
+  if moduleImportedAs == ''
+    let moduleImportedAs = moduleName
+  endif
+
+  call AddToDoc("const ".moduleName." = require('".moduleImportedAs."');", "newline")
+endfunction
+
+function! AddProp() abort
+  let propName = input("Prop Name: ")
+  let propValue = input("Prop value: ")
+  call AddToDoc('  '.propName.': '.propValue.',', 'newLine')
+  let morePropPrompt = input("Add another Prop? y/n: ")
+  if morePropPrompt == "y"
+    call AddProp()
+  endif
+endfunction
+
+function! GenerateExport() abort
+  call AddToDoc('module.exports = {', "newLine")
+  call AddProp()
+  call AddToDoc('}', "newLine")
+endfunction
+
+function! GenerateExpressServer() abort
+  call AddToDoc("const express = require('express');", 'newLine')
+  call AddToDoc("const app = express();", 'newLine')
+  call NewLine()
+  call AddToDoc("app.get('/', (req, res) => {", 'newLine')
+  call AddToDoc("  res.sendFile('index.html', {root: __dirname});", 'newLine')
+  call AddToDoc("});", 'newLine')
+  call NewLine()
+  call AddToDoc("const port = process.env.PORT || 8080;", 'newLine')
+  call AddToDoc("app.listen(port, ()=>{console.log(`System Online: ${port}`)});", 'newLine')
+  " needs code for res.status(404).send('') //etc
+  " needs support for async and await to avoid `callback hell` and use
+  " promises
+endfunction
+
+function! GenerateExpressGet() abort
+  let node = input("Node home/aboutme/etc: ")
+  " node css is accessable as ./css from html files
+  let fileURL = input('name and URL of File index.html/main.css/etc: ')
+  " needs support for async and await
+  call AddToDoc("app.get('".node."', (req, res) => {", 'newLine')
+  call AddToDoc("  res.sendFile('".fileURL."', {root: __dirname});", 'newLine')
+  call AddToDoc('});', 'newLine')
+endfunction
+
+" open libre
+" open test/functionalprogramming directory
+" open FCC to function programming
+" Do ACCA first
+" Array.find() Array.forEach() Array.some() Array.every() Array.reduce()
+" Array.includes()
+"

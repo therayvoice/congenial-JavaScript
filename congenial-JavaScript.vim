@@ -30,6 +30,17 @@ nnoremap ,timer :call GenerateTimer()<cr>
 nnoremap ,split :call SplitArray()<cr>
 nnoremap ,map :call MapArray()<cr>
 nnoremap ,loarray :call GenerateLoopOverArray()<cr>
+nnoremap ,gvar :call GenerateBuiltInVariables()<cr>
+nnoremap ,pvar :call GenerateProcessVariables()<cr>
+nnoremap ,event :call GenerateEventVariables()<cr>
+nnoremap ,emit :call GenerateEventEmitter()<cr>
+nnoremap ,server :call GenerateHTTPServerCode()<cr>
+nnoremap ,fs :call GenerateFSModuleCode()<cr>
+nnoremap ,require :call GenerateRequire()<cr>
+nnoremap ,export :call GenerateExport()<cr>
+nnoremap ,express :call GenerateExpressServer()<cr>
+nnoremap ,appget :call GenerateExpressGet()<cr>
+
 " needs code for Array.filter()
 
 " The following stuff is used to generate code
@@ -44,5 +55,17 @@ inoremap <c-y>timer <esc>:call GenerateTimer()<cr>
 inoremap <c-y>split <esc>:call SplitArray()<cr>
 inoremap <c-y>map <esc>:call MapArray()<cr>
 inoremap <c-y>loarray <esc>:call GenerateLoopOverArray()<cr>
+inoremap <c-y>gvar <esc>:call GenerateBuiltInVariables()<cr>
+inoremap <c-y>pvar <esc>:call GenerateProcessVariables()<cr>
+inoremap <c-y>event <esc>:call GenerateEventVariables()<cr>
+inoremap <c-y>emit <esc>:call GenerateEventEmitter()<cr>
+inoremap <c-y>server <esc>:call GenerateHTTPServerCode()<cr>
+inoremap <c-y>fs <esc>:call GenerateFSModuleCode()<cr>
+inoremap <c-y>require <esc>:call GenerateRequire()<cr>
+inoremap <c-y>export <esc>:call GenerateExport()<cr>
+inoremap <c-y>express <esc>:call GenerateExpressServer()<cr>
+inoremap <c-y>appget <esc>:call GenerateExpressGet()<cr>
+
+
 " needs code for Array.filter()
 
