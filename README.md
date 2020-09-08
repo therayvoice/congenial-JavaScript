@@ -34,21 +34,6 @@ Congenial JavaScript has the following features
 3. Insert-mode key-bindings are preceded with an `CTRL+y`.
 4. When triggred a command Vim will prompt you for a few things, when answered properls 
 
-Key Bindings to generate Dynamic Boilerplate
---------------------------------------------
-Command   |  Generates (JavaScript)     |  Requires input                                   |  Input Example
- ,outline  |  Outline of Features        |  -                                                |  -
- ,var      |  Variable                   |  Variable Name                                    |  health
- ,label    |  Label                      |  Label Name                                       |  - 
- ,loop     |  Loop                       |  Loop type, Loop details                          |  -
- ,array    |  Array                      |  Array Name, amount of members, member values     |  _
- ,log      |  Stdout aka console.log()   |  Value to log                                     |  "Hello World"
- ,timer    |  Timer Loops (setInterval)  |  Timer Name, inter length in ms                   |  -
- ,split    |  Array.split()              |  Array Name, Character to split at                |  myArray | ,
- ,map      |  Array.map()                |  Array Name, expression to execute each iteration |  console.log(element)
- ,loarray  |  Loop Over Array (forEach)  |  Array Name                                       |  myArray
-
-
 Contribution
 ------------
 The Project revolves around on 3 core files:
