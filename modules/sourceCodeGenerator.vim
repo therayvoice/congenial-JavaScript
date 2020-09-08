@@ -344,10 +344,3 @@ function! GenerateExpressGet() abort
   call AddToDoc('});', 'newLine')
 endfunction
 
-" open libre
-" open test/functionalprogramming directory
-" open FCC to function programming
-" Do ACCA first
-" Array.find() Array.forEach() Array.some() Array.every() Array.reduce()
-" Array.includes()
-"
