@@ -26,4 +26,16 @@ Key Bindings to generate Dynamic Boilerplate
  ,split    |  Array.split()              |  Array Name, Character to split at                |  myArray | ,
  ,map      |  Array.map()                |  Array Name, expression to execute each iteration |  console.log(element)
  ,loarray  |  Loop Over Array (forEach)  |  Array Name                                       |  myArray
+ ,gvar     |  Global variables           |  Object Name (in number)                          |  -
+ ,pvar     |  Process variables          |  Process variables                                |
+ ,event    |  Events                     |                                                   |
+ ,emit     |                             |                                                   |
+ ,server   |                             |                                                   |
+ ,fs       |                             |                                                   |
+ ,require  |                             |                                                   |
+ ,export   |                             |                                                   |
+ ,express  |                             |                                                   |
+ ,appget   |                             |                                                   |
+
+
 

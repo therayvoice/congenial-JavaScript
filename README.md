@@ -25,7 +25,7 @@ Guidelines to Install
 2. In a terminal goto `~/.vim/after/ftplugin/javascript/`, make these directories if they are absent! 
 3. Make a symbolic-link to the cloned directory with `ln -s ~/congenial-JavaScript`.
 4. Execute `cp ~/.vim/after/ftplugin/javascript/congenial-JavaScript/modules/plugins.vim ~/.vim/after/ftplugin/javascript/plugins.vim`  
-5. Now open a JavaScript file in Vim, like vim something.js and try out the magic.
+5. Now open a JavaScript file in Vim, like `vim something.js` and try out the magic; type `,outline` to see an outline of features.
 
 Congenial JavaScript has the following features
 -----------------------------------------------
